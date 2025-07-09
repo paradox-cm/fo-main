@@ -1,0 +1,373 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 47 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Updated with design tokens */
+    --background: 240 3% 4%; /* #0A0A0B */
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 47 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    /* Design token colors */
+    --gray-10: #000100;
+    --gray-20: #0c0c0c;
+    --gray-30: #151515;
+    --gray-40: #242423;
+    --gray-50: #454545;
+    --gray-60: #6b6b6b;
+    --gray-70: #959595;
+    --gray-80: #a9a9a9;
+    --gray-90: #c5c5c5;
+    --gray-100: #f2f2f2;
+
+    --primary-main: #b99c20;
+    --primary-hover: #ecd055;
+    --primary-pressed: #645411;
+    --primary-focus: #be9c09;
+    --primary-border: #645411;
+    --primary-secondary: #272107;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-tektur font-normal uppercase tracking-wide; /* Changed from font-bold to font-normal */
+  }
+  p {
+    @apply font-sans text-base leading-relaxed; /* Changed from font-barlow to font-sans (Inter) */
+  }
+
+  button,
+  .button {
+    @apply font-sans font-medium; /* Apply Inter to buttons */
+  }
+
+  /* Remove transition duration for buttons */
+  a,
+  button,
+  .transition,
+  .transition-all,
+  .transition-colors,
+  .transition-opacity,
+  .transition-transform {
+    transition-duration: 0ms !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#B99C20] text-black hover:bg-[#ECD055] active:bg-[#645411] disabled:bg-[#645411]/50 disabled:text-black/60 border border-[#242423] font-sans;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#B99C20] text-[#B99C20] bg-transparent hover:border-[#ECD055] hover:text-[#ECD055] active:border-[#645411] active:text-[#645411] disabled:border-[#645411]/50 disabled:text-[#645411]/50 font-sans;
+  }
+
+  .btn-text {
+    @apply bg-transparent text-[#B99C20] hover:text-[#ECD055] active:text-[#645411] disabled:text-[#645411]/50 underline-offset-4 hover:underline font-sans;
+  }
+
+  .btn-dark-primary {
+    @apply bg-[#1A1505] text-[#B99C20] hover:bg-[#272107] active:bg-[#0F0C02] border border-[#242423] rounded-md px-4 py-2 font-sans;
+  }
+
+  /* New Overpass Mono text styles */
+  .headline-mono {
+    @apply font-mono font-medium tracking-tight text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  .tagline-mono {
+    @apply font-mono font-normal tracking-wide text-sm md:text-base uppercase;
+  }
+
+  /* Navigation link styles */
+  .nav-link {
+    @apply font-mono text-sm uppercase tracking-wide text-white/80 hover:text-primary;
+  }
+
+  /* Stretched Tektur style */
+  .stretched-tektur {
+    @apply font-tektur font-medium tracking-tight text-3xl md:text-4xl lg:text-5xl uppercase;
+    transform: scaleX(1.1);
+    transform-origin: left center;
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(180deg, #e6c656 0%, #866a1d 100%);
+}
+
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  @apply bg-primary mt-2;
+}
+
+.brand-outline {
+  position: relative;
+  border: 1px solid #242423;
+}
+
+/* Forest Icon Hover Animation - Sped up */
+.forest-icon {
+  position: relative;
+  transition: transform 0.15s ease;
+}
+
+.forest-icon:hover,
+.forest-icon:active {
+  transform: scale(1.05);
+}
+
+.forest-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(185, 156, 32, 0.6) 0%, rgba(185, 156, 32, 0) 70%);
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+.forest-icon:hover::before,
+.forest-icon:active::before {
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+}
+
+/* Hero Headline Animation */
+.animated-headline {
+  overflow: hidden;
+}
+
+.animated-headline .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide-in animation from right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Mission section styling */
+.mission-section {
+  position: relative;
+  border-bottom: 1px solid #242423;
+}
+
+.image-grid-container {
+  width: 100%;
+}
+
+@media (min-width: 1280px) {
+  .image-grid-container {
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Rich black background for header and footer */
+.rich-black {
+  background-color: #000000;
+}
+
+/* Add this new utility class for bordered sections with max-width */
+.bordered-section {
+  position: relative;
+  max-width: 1220px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 1px solid #242423;
+  border-right: 1px solid #242423;
+}
+
+/* Updated to remove padding between sections */
+.connected-sections section {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: none;
+}
+
+.connected-sections section > div {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* First section needs a top border */
+.connected-sections section:first-child {
+  border-top: 1px solid #242423;
+}
+
+/* Make sure borders connect properly */
+.connected-sections .bordered-section {
+  border-bottom: none;
+}
+
+@media (max-width: 1220px) {
+  .bordered-section {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* Add this to the end of the file */
+
+/* Prose styling for content-heavy pages like Privacy Policy */
+.prose {
+  color: #f2f2f2;
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.prose h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-tektur);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.prose h3 {
+  color: white;
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-tektur);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.prose ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose a {
+  color: #b99c20;
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose-gold a {
+  color: #b99c20;
+}
+
+.prose address {
+  font-style: normal;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #b99c20;
+}
