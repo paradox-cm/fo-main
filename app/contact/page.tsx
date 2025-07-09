@@ -107,29 +107,8 @@ export default function ContactPage() {
                   <Mail className="text-primary mt-1" size={20} />
                   <div>
                     <h3 className="font-bold mb-1">Email Us</h3>
-                    <p className="text-white/80 font-barlow">info@forestoutfitters.com</p>
-                    <p className="text-white/80 font-barlow">investors@forestoutfitters.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Phone className="text-primary mt-1" size={20} />
-                  <div>
-                    <h3 className="font-bold mb-1">Call Us</h3>
-                    <p className="text-white/80 font-barlow">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <MapPin className="text-primary mt-1" size={20} />
-                  <div>
-                    <h3 className="font-bold mb-1">Visit Us</h3>
                     <p className="text-white/80 font-barlow">
-                      Forest Outfitters HQ
-                      <br />
-                      123 Tactical Drive
-                      <br />
-                      Bozeman, MT 59718
+                      <a href="mailto:admin@forestoutfitters.com" className="underline hover:text-gold transition-colors">admin@forestoutfitters.com</a>
                     </p>
                   </div>
                 </div>
