@@ -7,7 +7,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['cdn.shopify.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+      // Add other remotePatterns here if needed
+    ],
+    // domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com'], // Deprecated, remove or comment out
     unoptimized: process.env.NODE_ENV === 'production',
   },
   // If you need static exports, keep this:

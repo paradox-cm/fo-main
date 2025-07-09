@@ -12,6 +12,9 @@ import { HeroBanner } from "@/components/ui/hero-banner"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { FeatureCard } from "@/components/ui/feature-card"
 import { ChevronDown, ChevronUp, PenTool, Code, BarChart } from "lucide-react"
+import { Resend } from "resend"
+const resend = new Resend("re_9Hr2qw6X_CLCVjMLffa4wWhPqrSyAMEjS")
+const ADMIN_EMAIL = "admin@forestoutfitters.com"
 
 interface JobPosition {
   id: string
@@ -48,23 +51,46 @@ export default function CareersPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      let resumeUrl = ""
+      // If you want to handle file uploads, you would upload the file to a storage service and get a URL here
+      // For now, just note if a file was attached
+      if (formData.resume) {
+        resumeUrl = "[Resume file attached, see admin panel or request implementation for file uploads]"
+      }
 
-    // Success
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({
-      name: "",
-      email: "",
-      resume: null,
-      message: "",
-    })
+      const { error } = await resend.emails.send({
+        from: "Careers <careers@forestoutfitters.com>",
+        to: [ADMIN_EMAIL],
+        subject: `New Careers Application: ${formData.name}`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2>New Careers Application</h2>
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Resume:</strong> ${resumeUrl}</p>
+            <p><strong>Message:</strong> ${formData.message}</p>
+            <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+          </div>
+        `,
+      })
 
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-    }, 5000)
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+      setFormData({
+        name: "",
+        email: "",
+        resume: null,
+        message: "",
+      })
+
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 5000)
+    } catch (err) {
+      setIsSubmitting(false)
+      alert("Failed to submit application. Please try again later.")
+    }
   }
 
   const toggleJob = (id: string) => {

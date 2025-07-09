@@ -2,6 +2,13 @@ import type React from "react"
 import Link from "next/link"
 import { Instagram } from "lucide-react"
 import { ReliableImage } from "@/components/ui/reliable-image"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu"
+import { ChevronDown } from "lucide-react"
 
 export function Footer() {
   return (
@@ -22,10 +29,10 @@ export function Footer() {
           <div>
             <h4 className="text-primary text-lg mb-4 font-mono uppercase tracking-wide text-sm">Tribe Equipment</h4>
             <nav className="flex flex-col space-y-2">
-              <FooterLink href="#">Home</FooterLink>
-              <FooterLink href="#">About</FooterLink>
-              <FooterLink href="#">Products</FooterLink>
-              <FooterLink href="#">Pre-Order</FooterLink>
+              <FooterLink href="https://www.tribequipment.com/">Home</FooterLink>
+              <FooterLink href="https://www.tribequipment.com/about">About</FooterLink>
+              <FooterLink href="https://www.tribequipment.com/all-products">Products</FooterLink>
+              <FooterLink href="https://www.tribequipment.com/request-gear">Request Gear</FooterLink>
             </nav>
           </div>
 
@@ -41,34 +48,34 @@ export function Footer() {
           <div>
             <h4 className="text-primary text-lg mb-4 font-mono uppercase tracking-wide text-sm">The Real Bigfoot</h4>
             <nav className="flex flex-col space-y-2">
-              <FooterLink href="#">Home</FooterLink>
-              <FooterLink href="#">About</FooterLink>
-              <FooterLink href="#">Shop</FooterLink>
+              <FooterLink href="https://www.therealbigfoot.com/">Home</FooterLink>
+              <FooterLink href="https://www.therealbigfoot.com/about">About</FooterLink>
+              <FooterLink href="https://www.therealbigfoot.com/products">Shop</FooterLink>
             </nav>
           </div>
         </div>
 
-        <div className="border-t border-[#242423] pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
+        <div className="border-t border-[#242423] pt-8 flex flex-col md:flex-row md:justify-between md:items-center items-start justify-start">
+          <div className="mb-4 md:mb-0 w-full">
             <div className="flex items-center space-x-3 mb-4">
               <div className="forest-icon">
                 <ReliableImage
-                  src="/images/forest-icon-new.png"
-                  pngSrc="/images/forest-icon-new.png"
-                  width={30}
-                  height={30}
+                  src="/images/forest-icon-new.svg"
+                  svgSrc="/images/forest-icon-new.svg"
+                  width={22}
+                  height={22}
                   alt="Forest Outfitters Icon"
-                  className="h-8 w-8"
+                  className="h-6 w-6"
                 />
               </div>
-              <div className="hidden sm:flex items-center space-x-3">
+              <div className="flex items-center space-x-3">
                 <ReliableImage
-                  src="/images/forest-text-main.png"
-                  pngSrc="/images/forest-text-main.png"
-                  width={96}
-                  height={19}
+                  src="/images/forest-text-main.svg"
+                  svgSrc="/images/forest-text-main.svg"
+                  width={72}
+                  height={14}
                   alt="Forest"
-                  className="h-5 w-auto"
+                  className="h-4 w-auto"
                   style={{ filter: "invert(1) brightness(1.5)" }}
                 />
                 <ReliableImage
@@ -85,7 +92,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 w-full md:w-auto mt-4 md:mt-0">
             <Link
               href="https://www.instagram.com/forestoutfitters/"
               className="flex items-center justify-center w-10 h-10 rounded-full bg-[#242423] hover:bg-primary/20 transition-colors"
@@ -95,12 +102,31 @@ export function Footer() {
             >
               <Instagram size={18} className="text-white/80 hover:text-white" />
             </Link>
-            <Link
-              href="/contact"
-              className="bg-primary hover:bg-primary/90 text-black font-mono uppercase text-xs tracking-wide px-4 py-2 rounded transition-colors"
-            >
-              Contact Us
-            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="flex items-center gap-2 bg-black border border-[#242423] text-white font-mono uppercase text-xs tracking-wide px-4 pt-2 pb-2 rounded transition-colors whitespace-nowrap hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  Quick Links
+                  <ChevronDown className="w-4 h-4 ml-1" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                className="!bg-black !border-[#454545] !text-white !shadow-lg"
+                sideOffset={8}
+              >
+                <DropdownMenuItem asChild className="!hover:bg-[#242423] !focus:bg-[#242423] !active:bg-[#242423]">
+                  <Link href="/contact">Contact Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="!hover:bg-[#242423] !focus:bg-[#242423] !active:bg-[#242423]">
+                  <Link href="/help-center">Help Center</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="!hover:bg-[#242423] !focus:bg-[#242423] !active:bg-[#242423]">
+                  <Link href="/legal">Legal</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>

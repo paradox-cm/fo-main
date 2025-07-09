@@ -49,6 +49,7 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
+    color-scheme: dark;
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -91,4 +92,11 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Force Radix dropdown menu items to use dark gray on hover/focus/active */
+[data-radix-popper-content-wrapper] [role="menuitem"]:hover,
+[data-radix-popper-content-wrapper] [role="menuitem"]:focus,
+[data-radix-popper-content-wrapper] [role="menuitem"]:active {
+  background-color: #242423 !important;
 }

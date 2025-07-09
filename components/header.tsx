@@ -46,8 +46,8 @@ export function Header() {
         <Link href="/" className="flex items-center space-x-3">
           <div className="h-8 w-8 forest-icon">
             <ReliableImage
-              src="/images/forest-icon-new.png"
-              pngSrc="/images/forest-icon-new.png"
+              src="/images/forest-icon-new.svg"
+              svgSrc="/images/forest-icon-new.svg"
               width={32}
               height={32}
               alt="Forest Outfitters Icon"
@@ -56,8 +56,8 @@ export function Header() {
           </div>
           <div className="h-5">
             <ReliableImage
-              src="/images/forest-text-main.png"
-              pngSrc="/images/forest-text-main.png"
+              src="/images/forest-text-main.svg"
+              svgSrc="/images/forest-text-main.svg"
               width={96}
               height={19}
               alt="Forest"
@@ -76,9 +76,9 @@ export function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button onClick={scrollToBrands} className={exploreButtonStyles}>
+            <Link href="/brands" className={exploreButtonStyles}>
               Explore Our Brands
-            </button>
+            </Link>
             <Link
               href="/account"
               className="flex h-10 w-10 items-center justify-center rounded-full text-gray-300 transition-colors hover:bg-[#222] hover:text-[#B99C20]"
@@ -126,9 +126,9 @@ export function Header() {
             <MobileNavLink href="/account" onClick={() => setIsMenuOpen(false)}>
               Account
             </MobileNavLink>
-            <button onClick={scrollToBrands} className={`${exploreButtonStyles} text-center mt-2 w-full`}>
+            <Link href="/brands" className={`${exploreButtonStyles} text-center mt-2 w-full`}>
               Explore Our Brands
-            </button>
+            </Link>
           </div>
         </div>
       )}
@@ -137,27 +137,35 @@ export function Header() {
 }
 
 function NavLink({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
   return (
     <Link
       href={href}
       className={cn(
         "font-mono text-sm uppercase tracking-wide text-white/80 hover:text-primary transition-colors",
+        isActive && "underline text-primary underline-offset-8 decoration-2",
         className,
       )}
     >
       {children}
     </Link>
-  )
+  );
 }
 
 function MobileNavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick: () => void }) {
+  const pathname = usePathname();
+  const isActive = pathname === href;
   return (
     <Link
       href={href}
-      className="font-mono text-sm uppercase tracking-wide text-white/80 hover:text-primary py-2 block"
+      className={cn(
+        "font-mono text-sm uppercase tracking-wide text-white/80 hover:text-primary py-2 block transition-colors",
+        isActive && "underline text-primary underline-offset-8 decoration-2"
+      )}
       onClick={onClick}
     >
       {children}
     </Link>
-  )
+  );
 }

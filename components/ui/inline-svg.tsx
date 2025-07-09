@@ -15,13 +15,11 @@ export function InlineSvg({ svg, fallback, className, ...props }: InlineSvgProps
   const [isV0Preview, setIsV0Preview] = useState(false)
 
   useEffect(() => {
-    // Check if we're in the v0 preview environment
+    // Only detect v0 preview environment, not localhost
     const isPreview =
       typeof window !== "undefined" &&
       (window.location.hostname.includes("v0.dev") ||
-        window.location.hostname.includes("vercel-v0") ||
-        window.location.hostname.includes("localhost") ||
-        window.location.hostname.includes("127.0.0.1"))
+        window.location.hostname.includes("vercel-v0"))
 
     setIsV0Preview(isPreview)
   }, [])

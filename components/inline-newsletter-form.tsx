@@ -91,6 +91,10 @@ export function InlineNewsletterForm({ buttonText = "Subscribe" }: { buttonText?
           <span>{formState.message}</span>
         </div>
       )}
+      <p className="mt-4 text-xs text-white/50 text-center">
+        By subscribing you agree to our{' '}
+        <a href="/legal" className="underline hover:text-primary transition-colors">Privacy Policy</a>.
+      </p>
     </div>
   )
 }

@@ -371,3 +371,8 @@
   padding-left: 1rem;
   border-left: 2px solid #b99c20;
 }
+
+/* Force Vimeo iframe background to black */
+iframe[src*="vimeo.com"] {
+  background: #000 !important;
+}

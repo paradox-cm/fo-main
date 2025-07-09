@@ -157,9 +157,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     clearCart,
     checkout,
     isOpen,
+    toggleCart,
+    totalItems,
+    totalPrice,
     setIsOpen,
     isLoading,
     error,
+    closeCart,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

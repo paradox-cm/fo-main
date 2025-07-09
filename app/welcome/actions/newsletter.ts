@@ -3,10 +3,10 @@
 import { Resend } from "resend"
 
 // Initialize Resend with the API key
-const resend = new Resend("re_J53e1a4t_4Dea3xZQsu7ARmLJ5m6nZ9DJ")
+const resend = new Resend("re_9Hr2qw6X_CLCVjMLffa4wWhPqrSyAMEjS")
 
 // Configuration
-const OWNER_EMAIL = "christopher.mena@icloud.com"
+const OWNER_EMAIL = "admin@forestoutfitters.com"
 const IS_TESTING_MODE = false // Domain is now verified
 
 // Updated HTML template - EXACTLY matching the one in emails/newsletter/page.tsx

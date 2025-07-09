@@ -10,37 +10,27 @@ interface ReliableImageProps extends Omit<ImageProps, "src"> {
 }
 
 export function ReliableImage({ src, pngSrc, svgSrc, alt, ...props }: ReliableImageProps) {
-  const [imageSrc, setImageSrc] = useState<string>("/placeholder.svg")
+  const [imageSrc, setImageSrc] = useState<string>("")
   const [isV0Preview, setIsV0Preview] = useState<boolean>(false)
 
   useEffect(() => {
-    // More aggressive detection of v0 preview environment
+    // Only detect v0 preview environment, not localhost
     const isPreview =
       typeof window !== "undefined" &&
       (window.location.hostname.includes("v0.dev") ||
-        window.location.hostname.includes("vercel-v0") ||
-        window.location.hostname.includes("localhost") ||
-        window.location.hostname.includes("127.0.0.1"))
+        window.location.hostname.includes("vercel-v0"))
 
     setIsV0Preview(isPreview)
 
-    // In v0 preview, always use PNG
+    // In v0 preview, use PNG if available
     if (isPreview) {
-      // If we have a specific PNG version, use it
       if (pngSrc) {
         setImageSrc(pngSrc)
-      }
-      // If the source is an SVG, try to use a PNG version with the same name
-      else if (src.toLowerCase().endsWith(".svg")) {
-        const pngVersion = src.replace(/\.svg$/i, ".png")
-        setImageSrc(pngVersion)
-      }
-      // Otherwise use the original source
-      else {
+      } else {
         setImageSrc(src)
       }
     }
-    // In deployment, use SVG if available
+    // In all other environments (including localhost), use SVG if available
     else {
       if (svgSrc) {
         setImageSrc(svgSrc)
@@ -50,15 +40,15 @@ export function ReliableImage({ src, pngSrc, svgSrc, alt, ...props }: ReliableIm
     }
   }, [src, pngSrc, svgSrc])
 
+  if (!imageSrc) return null;
   return (
     <Image
-      src={imageSrc || "/placeholder.svg"}
+      src={imageSrc}
       alt={alt || ""}
       {...props}
       onError={() => {
-        // If the image fails to load, try a placeholder
-        setImageSrc("/placeholder.svg")
+        setImageSrc("");
       }}
     />
-  )
+  );
 }

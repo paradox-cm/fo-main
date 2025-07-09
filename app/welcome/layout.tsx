@@ -65,9 +65,10 @@ export default function WelcomeLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${barlow.variable} ${tektur.variable} ${overpassMono.variable} font-sans bg-[#0A0A0B] text-white min-h-screen`}
+        suppressHydrationWarning
       >
         <ThemeProvider defaultTheme="dark">{children}</ThemeProvider>
       </body>

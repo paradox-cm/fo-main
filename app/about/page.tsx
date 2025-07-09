@@ -75,14 +75,13 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="relative rounded-md overflow-hidden bg-black border border-[#242423]">
-              <div className="w-full aspect-video bg-black" style={{ backgroundColor: "#000000" }}>
-                <div className="absolute inset-0 bg-black"></div>
+            <div className="relative overflow-hidden aspect-[16/9]">
+              <div className="absolute inset-0">
                 <iframe
                   src="https://player.vimeo.com/video/255108388?h=02f89094d6&color=000000&dnt=1"
                   title="Forest Outfitters Story"
-                  className="w-full h-full relative z-10"
-                  style={{ backgroundColor: "#000000" }}
+                  className="w-full h-full absolute inset-0 z-10"
+                  style={{ backgroundColor: "transparent" }}
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                 ></iframe>

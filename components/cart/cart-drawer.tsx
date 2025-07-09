@@ -67,6 +67,7 @@ export function CartDrawer() {
         className="fixed right-0 top-0 h-full w-full sm:w-96 bg-black border-l border-[#242423] shadow-xl transform transition-transform duration-300 ease-in-out"
       >
         <div className="flex flex-col h-full">
+          <div className="bg-[#B99C20] text-black text-center py-2 font-mono text-sm uppercase tracking-wide">Coming Soon</div>
           {/* Cart Header */}
           <div className="p-4 border-b border-[#242423] flex items-center justify-between">
             <div className="flex items-center">
