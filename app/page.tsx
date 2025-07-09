@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowRight, Users, Briefcase } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -11,13 +11,35 @@ import { HeroBanner } from "@/components/ui/hero-banner"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { BrandCard } from "@/components/ui/brand-card"
 import { AnimatedHeadline } from "@/components/ui/animated_headline"
-import { MonoHeadline } from "@/components/ui/mono-headline"
 import { MonoTagline } from "@/components/ui/mono-tagline"
 import { MonoChip } from "@/components/ui/mono-chip"
-import { TekturHeadline } from "@/components/ui/tektur-headline"
 import { useEffect, useRef } from "react"
 import { ScrollToTop } from "@/components/ui/scroll-to-top"
 import { AdaptiveImage } from "@/components/ui/adaptive-image"
+
+const brands = [
+  {
+    title: "Hyde Camouflage",
+    description: "AI-driven camouflage technology for unparalleled stealth in any environment.",
+    imageSrc: "/images/HYDE.svg",
+    href: "https://www.hydecamouflage.com",
+    logoSize: { width: 59, height: 20 },
+  },
+  {
+    title: "Tribe Equipment",
+    description: "Elite tactical gear engineered for performance in the most demanding situations.",
+    imageSrc: "/images/Tribe-Logo.svg",
+    href: "https://www.tribequipment.com/",
+    logoSize: { width: 120, height: 40 },
+  },
+  {
+    title: "The Real Bigfoot",
+    description: "Adventure lifestyle apparel for those who live wild and free.",
+    imageSrc: "/images/RBF-Logo.svg",
+    href: "https://www.therealbigfoot.com",
+    logoSize: { width: 120, height: 40 },
+  },
+]
 
 export default function Home() {
   const parallaxRefs = useRef<Array<HTMLDivElement | null>>([])
@@ -25,21 +47,15 @@ export default function Home() {
   useEffect(() => {
     // Parallax scrolling effect
     const handleScroll = () => {
-      // Check if we're on a large screen - disable parallax on xl breakpoint
       if (window.innerWidth >= 1280) return
-
       parallaxRefs.current.forEach((el) => {
         if (!el) return
-
         const speed = Number.parseFloat(el.dataset.parallaxSpeed || "0.05")
         const scrollY = window.scrollY
         const yPos = -scrollY * speed
-
         el.style.transform = `translateY(${yPos}px)`
       })
     }
-
-    // Reset any transforms on resize
     const handleResize = () => {
       if (window.innerWidth >= 1280) {
         parallaxRefs.current.forEach((el) => {
@@ -48,13 +64,9 @@ export default function Home() {
         })
       }
     }
-
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("resize", handleResize)
-
-    // Initial check
     handleResize()
-
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleResize)
@@ -64,9 +76,8 @@ export default function Home() {
   return (
     <>
       <Header />
-
       <main className="connected-sections">
-        {/* Hero Section - Updated with solid background color */}
+        {/* Hero Section */}
         <section className="border-b border-[#242423]">
           <HeroBanner backgroundColor="#0A0A0B" title="" subtitle="" height="full" overlay={false}>
             <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between w-full max-w-6xl">
@@ -82,7 +93,6 @@ export default function Home() {
                   <NewsletterForm />
                 </div>
               </div>
-
               <div className="w-full max-w-md lg:max-w-sm mt-8 lg:mt-0">
                 <AdaptiveImage
                   src="/images/forest-hero-icon.svg"
@@ -96,34 +106,26 @@ export default function Home() {
             </div>
           </HeroBanner>
         </section>
-
         {/* Brand Vision / About Section */}
         <section className="border-b border-[#242423]">
           <div className="container mx-auto px-4 py-12 md:py-24">
-            {/* Content area - full width on largest screens */}
             <div className="max-w-2xl mx-auto lg:mx-0 mb-16 xl:mb-24">
               <MonoTagline className="text-[#B99C20] mb-2">Seek Adventure. Find Rest.</MonoTagline>
               <SectionHeading
                 title="Our Vision"
                 subtitle="Forest Outfitters—where technology, craftsmanship, and nature converge—for a new standard for outdoor and tactical performance."
               />
-
               <p className="mt-6 mb-6 text-white/80 font-sans">
-                We believe the greatest adventures are found in the outdoors and that nature offers the ultimate refuge
-                for rest.
+                We believe the greatest adventures are found in the outdoors and that nature offers the ultimate refuge for rest.
               </p>
-
               <p className="mb-6 text-white/80 font-sans">
-                At Forest Outfitters, we're making performance apparel that enhances people's experience in nature, and
-                we're building a business that improves nature's experience with people.
+                At Forest Outfitters, we're making performance apparel that enhances people's experience in nature, and we're building a business that improves nature's experience with people.
               </p>
-
               <Button variant="outline" className="mt-4" onClick={() => (window.location.href = "/about")}> 
                 Learn About Forest <ArrowRight size={16} className="ml-2" />
               </Button>
             </div>
           </div>
-
           {/* Full-width image grid container */}
           <div className="w-full overflow-hidden">
             <div className="w-full xl:max-w-none xl:px-0 px-4 mx-auto overflow-hidden">
@@ -145,7 +147,6 @@ export default function Home() {
                     <MonoChip>Performance</MonoChip>
                   </div>
                 </div>
-
                 {/* Down Jacket Image */}
                 <div
                   className="aspect-[4/5] xl:aspect-auto xl:h-[50vh] relative rounded-md xl:rounded-none overflow-hidden"
@@ -163,7 +164,6 @@ export default function Home() {
                     <MonoChip>Insulation</MonoChip>
                   </div>
                 </div>
-
                 {/* Technical Shell Image */}
                 <div
                   className="aspect-[4/5] xl:aspect-auto xl:h-[50vh] relative rounded-md xl:rounded-none overflow-hidden"
@@ -181,7 +181,6 @@ export default function Home() {
                     <MonoChip>Technical</MonoChip>
                   </div>
                 </div>
-
                 {/* Tactical Polo Image */}
                 <div
                   className="aspect-[4/5] xl:aspect-auto xl:h-[50vh] relative rounded-md xl:rounded-none overflow-hidden"
@@ -203,11 +202,37 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* Core Brand Pillars */}
-        {/* ...rest of the file unchanged... */}
+        {/* Explore Our Brands Section */}
+        <section className="border-b border-[#242423] bg-[#0A0A0B] py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <AnimatedHeadline text="Explore Our Brands" className="text-2xl md:text-3xl lg:text-4xl mb-6 text-center" />
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-2 sm:px-4 md:px-8">
+              {brands.map((brand) => (
+                <BrandCard
+                  key={brand.title}
+                  title={brand.title}
+                  description={brand.description}
+                  imageSrc={brand.imageSrc}
+                  href={brand.href}
+                  className="h-full flex flex-col justify-between"
+                  logoSize={brand.logoSize}
+                  buttonText="Visit Website"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* Waitlist Section */}
+        <section className="bg-[#0F0F10] py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-xl mx-auto text-center">
+              <h2 className="font-tektur text-2xl md:text-3xl mb-4">Be the First to Know</h2>
+              <p className="text-lg mb-8 text-white/80">Sign up for our waitlist to get early access, exclusive offers, and launch updates.</p>
+              <InlineNewsletterForm buttonText="Join the Waitlist" />
+            </div>
+          </div>
+        </section>
       </main>
-
       <Footer />
       <ScrollToTop />
     </>
